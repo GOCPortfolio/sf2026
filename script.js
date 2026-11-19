@@ -67,7 +67,7 @@ const CONFIG = {
   vendors: [
     { role: 'Event planner', name: 'SoFizzy' },
     { role: 'Decorator', name: 'Vick Deco' },
-    { role: 'Cake & dessert', name: 'The Exquisite' },
+    { role: 'Cake & dessert', name: 'De Exquisite' },
     { role: 'Make-up artist', name: 'Sauvity' },
     { role: 'Photography & videography', name: 'Globa Marvel & OBD' },
     { role: "Bride's outfit", name: 'Itohans Signature' },
