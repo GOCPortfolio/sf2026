@@ -72,7 +72,7 @@ const CONFIG = {
     { role: 'Photography & videography', name: 'Globa Marvel & OBD' },
     { role: "Bride's outfit", name: 'Itohans Signature' },
     { role: "Groom's outfit", name: 'Fashion Killa Luxury' },
-    { role: 'Website', name: 'G&C' }          // developer credit (kept as the last item)
+    { role: 'Website', name: 'G.O.C | Brand Strategist × AI', href: 'https://wa.me/2348027134537' }   // developer credit (kept as the last item)
   ],
 
   gifts: {
@@ -117,7 +117,8 @@ const CONFIG = {
     { q: 'Dress code', a: ['Please dress in the colours of the day: gold, burgundy and brown, with touches of white.'], swatches: true },
     { q: 'Parking', a: ['Parking is limited, so please arrive early.'] },
     { q: 'Accommodation', a: ['The marriage team is lodging at The Palms Hotel. Some guests can also lodge at Kings Resort.'] },
-    { q: 'Contact person', contact: true }
+    { q: 'Contact person', contact: true },
+    { q: 'Who created this beautiful wedding website?', a: ['This website was proudly designed by G.O.C | Brand Strategist × AI, where we create beautiful, personalized digital wedding experiences.', 'Planning your wedding? Let\u2019s create yours too!'], link: { text: 'Chat with us on WhatsApp', href: 'https://wa.me/2348027134537' } }
   ],
 
   rsvp: {
@@ -251,7 +252,11 @@ const CONFIG = {
     C.vendors.forEach(v => {
       const li = el('li');
       li.appendChild(el('span', 'v-role', v.role));
-      li.appendChild(el('span', 'v-who', v.name));
+      if (v.href) {
+        const w = el('span', 'v-who'); const a = el('a', null, v.name);
+        a.href = v.href; a.target = '_blank'; a.rel = 'noopener'; a.style.color = 'inherit'; a.style.textDecoration = 'underline';
+        w.appendChild(a); li.appendChild(w);
+      } else li.appendChild(el('span', 'v-who', v.name));
       ul.appendChild(li);
     });
   }
@@ -336,6 +341,10 @@ const CONFIG = {
       panel.setAttribute('inert', '');
       const inner = el('div', 'faq-a-in');
       (f.a || []).forEach(t => inner.appendChild(el('p', null, t)));
+      if (f.link) {
+        const p = el('p'); const a = el('a', null, f.link.text); a.href = f.link.href; a.target = '_blank'; a.rel = 'noopener';
+        p.appendChild(a); inner.appendChild(p);
+      }
       if (f.swatches) {
         const row = el('ul', 'faq-swatches swatches'); row.style.padding = '0'; row.style.listStyle = 'none';
         C.colours.forEach(c => row.appendChild(swatchItem(c)));
