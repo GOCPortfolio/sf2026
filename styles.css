@@ -167,6 +167,11 @@ img{max-width:100%;height:auto}
 
 /* ================= HERO ================= */
 .hero{position:relative;background:linear-gradient(#2A0612,var(--burgundy-deep) 50%)}
+.hero-photo{position:relative;overflow:hidden}
+.hero-photo img.hero-slide:not(:first-child){position:absolute;top:0;left:0;height:100%;object-fit:cover;object-position:50% 20%}
+.hero-slide{opacity:0;transform:scale(1.07);transition:opacity 1.8s ease-in-out,transform 7s ease-out;will-change:opacity,transform}
+.hero-slide.on{opacity:1;transform:scale(1)}
+@media (prefers-reduced-motion:reduce){.hero-slide{transition:opacity .6s linear;transform:none}.hero-slide.on{transform:none}}
 .hero-photo img{display:block;width:100%;height:auto;-webkit-mask-image:linear-gradient(#000 55%,transparent 100%);mask-image:linear-gradient(#000 55%,transparent 100%)}
 .hero-text{position:relative;z-index:2;text-align:center;margin-top:-190px;padding:0 20px 56px}
 .hashtag{font-family:var(--f-label);font-weight:600;font-size:13px;letter-spacing:.3em;margin:0 0 6px;color:var(--gold-light);text-transform:uppercase;text-shadow:0 1px 8px rgba(30,4,14,.9)}

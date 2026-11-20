@@ -327,6 +327,18 @@ const CONFIG = {
     lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
   }
 
+  /* ---------- hero slider (smooth crossfade) ---------- */
+  function initHeroSlider() {
+    const slides = $$('.hero-slide');
+    if (slides.length < 2) return;
+    let cur = 0, timer = null;
+    const go = n => { slides[cur].classList.remove('on'); cur = n % slides.length; slides[cur].classList.add('on'); };
+    const start = () => { if (!timer) timer = setInterval(() => go(cur + 1), 5500); };
+    const stop = () => { clearInterval(timer); timer = null; };
+    document.addEventListener('visibilitychange', () => document.hidden ? stop() : start());
+    start();
+  }
+
   /* ---------- FAQ ---------- */
   function renderFaq() {
     const box = $('#faq');
@@ -699,7 +711,7 @@ const CONFIG = {
   /* ---------- go ---------- */
   function init() {
     fill(); renderSwatches(); renderVenues(); renderFather(); renderStory(); renderGallery();
-    renderToast(); renderFaq(); renderVendors();
+    renderToast(); renderFaq(); renderVendors(); initHeroSlider();
     initLightbox(); initCalendar(); initCountdown(); initRsvp(); initCopy(); initShare(); initGuest();
     initSound(); initReveal(); initIntro();
   }
